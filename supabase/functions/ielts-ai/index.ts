@@ -139,7 +139,8 @@ Deno.serve(async (req) => {
       if (!body.essay || String(body.essay).trim().length < 10) throw new Error("Nothing to grade");
       system = `You are an experienced IELTS Writing examiner and tutor. Grade strictly by the official public band descriptors. ${BAND_GUIDE}
 Rules:
-- Give band scores in 0.5 steps. Overall = average of the four criteria rounded to the nearest 0.5.
+- For EACH criterion, first decide which official band descriptor the writing FULLY meets, then assign that band. A learner must fully meet a descriptor to receive that band — when torn between two bands, give the LOWER one. Be consistent: the same text should always receive the same score.
+- Give band scores in 0.5 steps. Overall = average of the four criteria rounded DOWN to the nearest 0.5.
 - If the learner is practising ONE SECTION only, grade that section for what it should do (e.g. an overview should give trends without figures) and note criteria that cannot be fully judged, but still give your best estimate.
 - For Task 1, check every figure against the data provided and say clearly if numbers or the main trend are wrong.
 - Feedback must be practical and pitched at the target band: quote the learner's own words and show the fix.
@@ -164,7 +165,7 @@ For Task 1, use the exact figures from the data provided. Then list the most use
       system,
       messages: [{ role: "user", content: user }],
       output_config: {
-        effort: "medium",
+        effort: "high",
         format: { type: "json_schema", schema },
       },
     });
