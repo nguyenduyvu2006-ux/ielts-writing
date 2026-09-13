@@ -158,7 +158,7 @@ For Task 1, use the exact figures from the data provided. Then list the most use
       throw new Error("Unknown action");
     }
 
-    const response = await client.beta.messages.create({
+    const response = await client.messages.create({
       model: MODEL,
       max_tokens: 8000,
       system,
@@ -167,10 +167,7 @@ For Task 1, use the exact figures from the data provided. Then list the most use
         effort: "medium",
         format: { type: "json_schema", schema },
       },
-      // Server-side fallback: if a safety classifier declines, re-run on a fallback model in the same call.
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-    } as any);
+    });
 
     if (response.stop_reason === "refusal") {
       throw new Error("The AI declined this request. Please try a different text.");
