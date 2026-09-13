@@ -165,7 +165,7 @@ For Task 1, use the exact figures from the data provided. Then list the most use
       system,
       messages: [{ role: "user", content: user }],
       output_config: {
-        effort: "high",
+        effort: "medium",
         format: { type: "json_schema", schema },
       },
     });
