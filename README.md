@@ -63,7 +63,7 @@ Reload the page — the yellow "Demo mode" banner disappears and real AI feedbac
 4. After 1–2 minutes the site is live at `https://vnguyen-workai.github.io/ielts-writing/`.
 
 ## Cost
-Each "Get AI feedback" or "Model answer" is one Claude call (Opus 5, ~2–3k tokens in/out) — roughly 5–8 US cents. A student doing 20 practices a month ≈ $1–2.
+Each "Get AI feedback" or "Model answer" is one Claude call (Sonnet 5, ~2–3k tokens in/out) — roughly 2–3 US cents. A student doing 20 practices a month ≈ 50 cents.
 
 ## Local testing
 ```bash

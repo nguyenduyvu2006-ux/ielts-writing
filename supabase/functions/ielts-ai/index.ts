@@ -7,7 +7,7 @@
 
 import Anthropic from "npm:@anthropic-ai/sdk";
 
-const MODEL = "claude-opus-5";
+const MODEL = "claude-sonnet-5";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
