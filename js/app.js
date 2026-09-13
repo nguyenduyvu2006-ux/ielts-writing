@@ -3,6 +3,7 @@
   const $ = (id) => document.getElementById(id);
   const LS_BAND = 'iwl_band';
   const LS_HIST = 'iwl_history';
+  const LS_GUIDE = 'iwl_guide';
 
   const MODES = {
     1: [['full', 'Full answer'], ['intro', 'Introduction'], ['overview', 'Overview'], ['body', 'Body paragraph']],
@@ -39,6 +40,7 @@
     localStorage.setItem(LS_BAND, b);
     document.querySelectorAll('.band-btn').forEach((x) => x.classList.toggle('active', Number(x.dataset.band) === b));
     $('bandChip').textContent = 'Target: ' + fmtBand(b);
+    if (state.current) renderGuide();
   }
   const fmtBand = (b) => (b >= 8 ? '8.0+' : Number(b).toFixed(1));
   $('bandGrid').addEventListener('click', (e) => { const b = e.target.closest('.band-btn'); if (b) setBand(Number(b.dataset.band)); });
@@ -59,6 +61,7 @@
     const sel = $('kindSelect');
     sel.innerHTML = (task === 1 ? KINDS1 : KINDS2).map(([v, l]) => `<option value="${v}">${l}</option>`).join('');
     renderModePills();
+    $('guidePanel').hidden = localStorage.getItem(LS_GUIDE) !== '1';
     newTask();
     go('practice');
   }
@@ -87,7 +90,7 @@
     } else {
       const pool = state.kind === 'any' ? TASK2_BANK : TASK2_BANK.filter((q) => q.type === state.kind);
       const q = pool[Math.floor(Math.random() * pool.length)];
-      state.current = { type: q.type, title: TASK2_TYPES[q.type], topic: q.topic, prompt: q.q, rubric: 'Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.' };
+      state.current = { type: q.type, title: TASK2_TYPES[q.type], topic: q.topic, q: q.q, para: q.para, prompt: q.q, rubric: 'Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.' };
       $('chartArea').innerHTML = `<span class="band-tag">${TASK2_TYPES[q.type]} · ${q.topic}</span>`;
       $('promptText').textContent = q.q;
     }
@@ -107,7 +110,21 @@
     $('rubricText').textContent = hint;
     const t = WORD_TARGET[state.task][m];
     $('wordTarget').textContent = t ? `/ ${t} minimum` : '';
+    renderGuide();
   }
+
+  /* ───────── how-to-write guide ───────── */
+  function renderGuide() {
+    if ($('guidePanel').hidden) return;
+    $('guideBody').innerHTML = buildGuide({ task: state.task, mode: state.mode, band: state.band, current: state.current });
+  }
+  $('guideBtn').addEventListener('click', () => {
+    const open = $('guidePanel').hidden;
+    $('guidePanel').hidden = !open;
+    localStorage.setItem(LS_GUIDE, open ? '1' : '0');
+    if (open) { renderGuide(); $('guidePanel').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+  $('guideClose').addEventListener('click', () => { $('guidePanel').hidden = true; localStorage.setItem(LS_GUIDE, '0'); });
 
   /* ───────── editor, timer, word count ───────── */
   const essay = $('essay');

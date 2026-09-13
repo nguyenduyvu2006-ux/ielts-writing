@@ -3,21 +3,27 @@
  */
 const PROCESS_BANK = [
   { id:'pr1', type:'process', cycle:false,
+    para:'how chocolate is produced, from the cacao tree to the finished liquid chocolate',
     title:'The process of making chocolate',
     steps:['Cacao trees grown (tropical regions)','Ripe red pods harvested','Beans removed from pods','Beans fermented (5-7 days)','Beans dried in the sun','Transported to factory','Roasted at 350°C','Shells removed, inner bean crushed','Pressed into liquid chocolate'] },
   { id:'pr2', type:'process', cycle:true,
+    para:'the different stages in the life of a frog',
     title:'The life cycle of a frog',
     steps:['Eggs laid in water (frogspawn)','Tadpoles hatch (7-10 days)','Tadpole grows back legs','Front legs develop, tail shrinks','Young frog leaves water','Adult frog returns to lay eggs'] },
   { id:'pr3', type:'process', cycle:true,
+    para:'how used glass bottles are turned into new ones',
     title:'How glass bottles are recycled',
     steps:['Used bottles collected from bins','Transported to recycling plant','Sorted by colour & washed','Crushed into small pieces (cullet)','Melted in furnace at 1,500°C','Molten glass moulded into new bottles','New bottles delivered to shops','Sold to consumers'] },
   { id:'pr4', type:'process', cycle:false,
+    para:'how hydroelectric power is generated from water stored behind a dam',
     title:'The process of producing electricity from hydropower',
     steps:['Rain fills reservoir behind dam','Water released through intake gate','Water flows down penstock pipe','Turbine spins','Generator converts motion to electricity','Voltage raised by transformer','Electricity sent along power lines','Water returned to river'] },
   { id:'pr5', type:'process', cycle:false,
+    para:'the stages involved in producing instant noodles',
     title:'How instant noodles are manufactured',
     steps:['Flour stored in silos','Mixed with water & oil','Dough rolled into sheets','Cut into strips','Strips shaped in noodle discs','Cooked in oil (fried)','Dried and cooled','Packed in cups with vegetables & seasoning','Sealed and labelled'] },
   { id:'pr6', type:'process', cycle:false,
+    para:'how bricks are manufactured for use in construction',
     title:'The process of making bricks for the building industry',
     steps:['Clay dug from ground by digger','Clay passed through metal grid','Mixed with sand & water','Shaped in mould or cut by wire','Dried in drying oven (24-48 hrs)','Fired in kiln: 200-980°C','Fired in kiln: 870-1,300°C','Cooled in cooling chamber (48-72 hrs)','Packaged and delivered'] },
 ];
@@ -26,6 +32,7 @@ const PROCESS_BANK = [
  * kind: road | green | water | building | beach | label */
 const MAP_BANK = [
   { id:'mp1', type:'map', title:'The town of Riverford in 1990 and today',
+    para:'how the town of Riverford has changed since 1990',
     panels:[
       { label:'1990', items:[
         {kind:'water',x:0,y:52,w:100,h:18,label:'River'},
@@ -50,6 +57,7 @@ const MAP_BANK = [
       ]}
     ]},
   { id:'mp2', type:'map', title:'The layout of a university sports centre now and after redevelopment',
+    para:'how a university sports centre will look once it has been redeveloped, compared with its current layout',
     panels:[
       { label:'Now', items:[
         {kind:'road',x:0,y:62,w:100,h:8,label:'Road'},
@@ -65,11 +73,12 @@ const MAP_BANK = [
         {kind:'building',x:70,y:5,w:25,h:45,label:'Sports hall'},
         {kind:'building',x:35,y:15,w:30,h:25,label:'Gym (extended)'},
         {kind:'building',x:35,y:42,w:30,h:10,label:'Reception & café'},
-        {kind:'building',x:32,y:2,w:16,h:8,label:'Changing'},
+        {kind:'building',x:32,y:2,w:16,h:8,label:'Changing rooms'},
         {kind:'building',x:52,y:2,w:16,h:8,label:'Dance studio'},
       ]}
     ]},
   { id:'mp3', type:'map', title:'An island before and after the construction of tourist facilities',
+    para:'the changes made to an island after tourist facilities were built',
     panels:[
       { label:'Before', items:[
         {kind:'water',x:0,y:0,w:100,h:70,label:''},
@@ -90,6 +99,7 @@ const MAP_BANK = [
       ]}
     ]},
   { id:'mp4', type:'map', title:'A village school in 2005 and 2025',
+    para:'how a village school changed between 2005 and 2025',
     panels:[
       { label:'2005', items:[
         {kind:'road',x:0,y:0,w:100,h:7,label:'Road'},
@@ -111,6 +121,7 @@ const MAP_BANK = [
       ]}
     ]},
   { id:'mp5', type:'map', title:'The centre of Meadowfield in 1980 and 2020',
+    para:'how the centre of Meadowfield changed over a forty-year period',
     panels:[
       { label:'1980', items:[
         {kind:'road',x:47,y:0,w:6,h:70,label:'High Street'},
@@ -133,13 +144,14 @@ const MAP_BANK = [
       ]}
     ]},
   { id:'mp6', type:'map', title:'Plans for a new hospital site: proposal A and proposal B',
+    para:'two different proposals for the layout of a new hospital site',
     panels:[
       { label:'Proposal A', items:[
         {kind:'road',x:0,y:0,w:100,h:7,label:'Main road'},
         {kind:'building',x:10,y:15,w:40,h:25,label:'Hospital'},
         {kind:'road',x:55,y:15,w:35,h:25,label:'Car park'},
         {kind:'green',x:10,y:45,w:80,h:20,label:'Gardens'},
-        {kind:'building',x:0,y:15,w:8,h:25,label:'Bus'},
+        {kind:'building',x:0,y:15,w:8,h:25,label:'Bus stop'},
       ]},
       { label:'Proposal B', items:[
         {kind:'road',x:0,y:0,w:100,h:7,label:'Main road'},

@@ -358,7 +358,7 @@
     else if (scn.type === 'mixed') d = genMixed(scn);
 
     return {
-      id: scn.id, type: scn.type, title: scn.title, data: d,
+      id: scn.id, type: scn.type, title: scn.title, data: d, scn,
       prompt: promptFor(scn, d),
       rubric: RUBRIC,
       describe: () => describe(scn, d),

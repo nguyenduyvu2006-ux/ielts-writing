@@ -127,6 +127,25 @@ textarea#essay:focus { outline: none; border-color: var(--blue); }
 .actions { margin-top: 14px; }
 .error { color: var(--red); font-weight: 600; margin-top: 10px; }
 
+/* guide */
+.guide-btn { margin-top: 10px; }
+.guide { position: relative; border-color: #bfdbfe; background: #f8fbff; }
+.guide-close { position: absolute; top: 10px; right: 10px; }
+.g-head { margin: 0 0 12px; color: var(--blue-dark); }
+.g-block { margin-bottom: 14px; }
+.g-label { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+.guide ol, .guide ul { margin: 0 0 4px; padding-left: 22px; }
+.guide li { margin-bottom: 3px; }
+.g-dyn { background: #fff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.g-ex { margin: 4px 0 0; padding: 10px 14px; border-left: 4px solid var(--blue); background: #eff6ff; border-radius: 6px; font-style: italic; line-height: 1.6; }
+.g-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 4px; }
+.g-table th, .g-table td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+.g-table th { background: #f1f5f9; font-size: 12px; text-transform: uppercase; color: var(--muted); }
+.g-table td:first-child { color: var(--red); }
+.g-table td:last-child { color: var(--green); font-weight: 600; }
+.g-starters li { font-style: italic; color: var(--blue-dark); }
+.g-dont { list-style: none; padding-left: 0; }
+
 /* results */
 .score-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
 .score { text-align: center; padding: 14px 6px; border-radius: 12px; background: #f8fafc; border: 1px solid var(--border); }
