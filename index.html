@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Writing Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" class="brand" data-go="home">✍️ IELTS Writing Lab</a>
+  <div class="topbar-right">
+    <span class="band-chip" id="bandChip">Target: —</span>
+    <button class="btn btn-ghost" data-go="history">History</button>
+  </div>
+</header>
+
+<!-- ───────── HOME ───────── -->
+<section id="view-home" class="view">
+  <div class="hero">
+    <h1>Practice IELTS Writing with AI feedback</h1>
+    <p>Random charts, real exam questions, and feedback written for <b>your</b> band.</p>
+  </div>
+
+  <div class="card">
+    <h2>1. What band are you aiming for?</h2>
+    <p class="muted">Model answers and advice are pitched at this level, so they are useful to you — not a Band 9 essay you can't copy.</p>
+    <div class="band-grid" id="bandGrid">
+      <button class="band-btn" data-band="5.5">5.5</button>
+      <button class="band-btn" data-band="6">6.0</button>
+      <button class="band-btn" data-band="6.5">6.5</button>
+      <button class="band-btn" data-band="7">7.0</button>
+      <button class="band-btn" data-band="7.5">7.5</button>
+      <button class="band-btn" data-band="8">8.0+</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Pick a task</h2>
+    <div class="task-grid">
+      <button class="task-card" data-task="1">
+        <span class="task-num">Task 1</span>
+        <span class="task-name">Charts, tables, processes, maps</span>
+        <span class="task-desc">A new chart every time · 20 minutes · 150+ words</span>
+      </button>
+      <button class="task-card" data-task="2">
+        <span class="task-num">Task 2</span>
+        <span class="task-name">Essay</span>
+        <span class="task-desc">Opinion, discussion, problem/solution… · 40 minutes · 250+ words</span>
+      </button>
+    </div>
+  </div>
+
+  <p class="demo-note" id="demoNote" hidden>⚠️ Demo mode — AI is not connected yet. Results are sample data. See README to connect.</p>
+</section>
+
+<!-- ───────── PRACTICE ───────── -->
+<section id="view-practice" class="view" hidden>
+  <div class="practice-head">
+    <button class="btn btn-ghost" data-go="home">← Home</button>
+    <h2 id="practiceTitle">Task 1</h2>
+  </div>
+
+  <div class="card">
+    <div class="row-between">
+      <div>
+        <div class="label">What do you want to practise?</div>
+        <div class="pills" id="modePills"></div>
+      </div>
+      <div>
+        <div class="label" id="filterLabel">Chart type</div>
+        <div class="row">
+          <select id="kindSelect" class="select"></select>
+          <button class="btn btn-secondary" id="newTaskBtn">🎲 New</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="prompt" id="promptText"></p>
+    <div id="chartArea" class="chart-area"></div>
+    <p class="rubric" id="rubricText"></p>
+  </div>
+
+  <div class="card">
+    <div class="row-between editor-bar">
+      <div class="timer" id="timer">00:00</div>
+      <div class="wc"><span id="wordCount">0</span> words <span class="muted" id="wordTarget"></span></div>
+    </div>
+    <textarea id="essay" placeholder="Start typing here… the timer starts with your first word." spellcheck="false"></textarea>
+    <div class="row actions">
+      <button class="btn btn-primary btn-big" id="gradeBtn">✅ Get AI feedback</button>
+      <button class="btn btn-secondary btn-big" id="modelBtn">📖 Show model answer</button>
+    </div>
+    <p class="error" id="practiceError" hidden></p>
+  </div>
+
+  <div class="card" id="modelPanel" hidden>
+    <div class="row-between">
+      <h3>Model answer</h3>
+      <button class="btn btn-ghost" id="closeModel">✕</button>
+    </div>
+    <div id="modelPanelBody"></div>
+  </div>
+</section>
+
+<!-- ───────── RESULTS ───────── -->
+<section id="view-results" class="view" hidden>
+  <div class="practice-head">
+    <button class="btn btn-ghost" id="backToPractice">← Back to writing</button>
+    <h2>Your feedback</h2>
+  </div>
+
+  <div class="card">
+    <div class="score-row" id="scoreRow"></div>
+    <p class="summary" id="resSummary"></p>
+    <p class="data-acc" id="resData" hidden></p>
+  </div>
+
+  <div class="tabs" id="resTabs">
+    <button class="tab active" data-tab="feedback">Feedback</button>
+    <button class="tab" data-tab="compare">Rewrite &amp; compare</button>
+    <button class="tab" data-tab="model">Model answer</button>
+  </div>
+
+  <div class="card tab-panel" data-panel="feedback">
+    <h3>✅ Strengths</h3>
+    <ul id="resStrengths"></ul>
+    <h3>🔧 What to fix first</h3>
+    <div id="resImprovements"></div>
+  </div>
+
+  <div class="card tab-panel" data-panel="compare" hidden>
+    <div class="compare">
+      <div><h3>Your text</h3><div class="text-box" id="cmpOriginal"></div></div>
+      <div><h3>Improved (target band)</h3><div class="text-box improved" id="cmpRewrite"></div></div>
+    </div>
+    <h3>What changed and why</h3>
+    <div id="resChanges"></div>
+  </div>
+
+  <div class="card tab-panel" data-panel="model" hidden>
+    <div id="resModel"><button class="btn btn-secondary btn-big" id="loadModelBtn">📖 Load model answer</button></div>
+  </div>
+
+  <div class="row actions">
+    <button class="btn btn-primary btn-big" id="tryAgainBtn">✏️ Improve &amp; resubmit</button>
+    <button class="btn btn-secondary btn-big" id="newFromResults">🎲 New task</button>
+  </div>
+</section>
+
+<!-- ───────── HISTORY ───────── -->
+<section id="view-history" class="view" hidden>
+  <div class="practice-head">
+    <button class="btn btn-ghost" data-go="home">← Home</button>
+    <h2>History</h2>
+  </div>
+  <div class="card">
+    <p class="muted">Saved on this device only.</p>
+    <div id="historyList"></div>
+    <button class="btn btn-ghost" id="clearHistory">Clear history</button>
+  </div>
+</section>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="spinner"></div>
+  <p id="overlayText">Examining your writing…</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/task1-bank.js"></script>
+<script src="js/diagrams.js"></script>
+<script src="js/task2-bank.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
